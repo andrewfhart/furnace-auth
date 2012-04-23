@@ -45,7 +45,6 @@ class Auth {
     $route = Furnace::GetRequest()->route();
     
     if (!self::test()) {
-      debug($_SESSION);
       Furnace::Redirect($failureRedirect . '?after=' . urlencode('/' . ltrim($route->raw,'/')));
     } else {
       return true;

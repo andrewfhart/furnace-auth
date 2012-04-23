@@ -3,6 +3,7 @@ use furnace\core\Config;
 use furnace\core\Furnace;
 use furnace\controller\Controller;
 use furnace\controller\Input;
+use furnace\utilities\Http;
 
 class DefaultController extends Controller {
 
@@ -12,7 +13,7 @@ class DefaultController extends Controller {
   }
   
   public function login() {
-    if ($this->request->method == HTTP_POST) {
+    if ($this->request->method == Http::POST) {
       try {
         $this->Auth->login('password', Input::post());
         $this->response->redirect(Input::Post('after','/'));
@@ -29,7 +30,7 @@ class DefaultController extends Controller {
   }
 
   public function register($afterRegistration = '/') {
-    if ($this->request->method == HTTP_POST) {
+    if ($this->request->method == Http::POST) {
       try {
         $this->Auth->register(Input::post(),array('password2'));
         $this->flash("Registration successful!");
